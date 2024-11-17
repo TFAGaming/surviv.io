@@ -1,0 +1,24 @@
+{
+  "name": "survev",
+  "version": "0.0.15",
+  "description": "Open Source Surviv.io Server",
+  "scripts": {
+    "dev:server": "cd server && npm run dev",
+    "dev:client": "cd client && npm run dev",
+    "lint": "biome check --write",
+    "lint:ci": "biome check"
+  },
+  "engines": {
+    "node": ">=20.0.0"
+  },
+  "author": "Leia",
+  "license": "GPL-3.0-or-later",
+  "devDependencies": {
+    "@biomejs/biome": "^1.9.4",
+    "@types/node": "^20.17.1",
+    "typescript": "^5.6.3"
+  },
+  "dependencies": {
+    "survev": "file:"
+  }
+}

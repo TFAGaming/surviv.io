@@ -1,0 +1,20 @@
+{
+  "private": true,
+  "scripts": {
+    "build": "tsc --noEmit && vite build",
+    "dev": "vite dev",
+    "preview": "vite preview"
+  },
+  "dependencies": {
+    "@taufik-nurrohman/color-picker": "1.4.2",
+    "base64-js": "^1.5.1",
+    "bit-buffer": "^0.2.5",
+    "jquery": "^3.7.1",
+    "pixi.js-legacy": "^7.4.2"
+  },
+  "devDependencies": {
+    "@types/jquery": "^3.5.32",
+    "vite": "^5.4.10",
+    "vite-plugin-strip-block": "^1.0.1"
+  }
+}

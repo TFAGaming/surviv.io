@@ -1,0 +1,22 @@
+{
+  "private": true,
+  "scripts": {
+    "build": "tsc",
+    "start:api": "NODE_ENV=production node --enable-source-maps dist/server/src/apiServer.js --api-server",
+    "start:game": "NODE_ENV=production node --enable-source-maps dist/server/src/gameServer.js --game-server",
+    "start:dev": "NODE_ENV=production node --enable-source-maps dist/server/src/devServer.js",
+    "dev": "node -r ts-node/register --watch --watch-preserve-output --watch-path=../shared --watch-path=./src src/devServer.ts",
+    "dev:api": "node -r ts-node/register --watch --watch-preserve-output --watch-path=../shared --watch-path=./src src/apiServer.ts --api-server",
+    "dev:game": "node -r ts-node/register --watch --watch-preserve-output --watch-path=../shared --watch-path=./src src/gameServer.ts --game-server"
+  },
+  "dependencies": {
+    "nanotimer": "^0.3.15",
+    "typescript": "^5.6.3",
+    "uWebSockets.js": "https://github.com/uNetworking/uWebSockets.js/archive/v20.49.0.tar.gz"
+  },
+  "devDependencies": {
+    "@types/nanotimer": "^0.3.2",
+    "@types/node": "^20.17.1",
+    "ts-node": "^10.9.2"
+  }
+}
