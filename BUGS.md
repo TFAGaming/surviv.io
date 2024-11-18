@@ -19,6 +19,7 @@ This list is from the issue https://github.com/leia-uwu/survev/issues/129, each 
 
 **4. Woods:**
 - ❌: Buildings shouldn't be able to spawn on the central island
+- ❌: Picking up Shishigami no Kabuto and then removing it will keep the effects (permanently), and you cannot pick up any other helmet.
 
 **5. Cobalt:**
 - ❌: Roles nonfunctional
@@ -27,8 +28,8 @@ This list is from the issue https://github.com/leia-uwu/survev/issues/129, each 
 
 **6. Savannah**
 - ⚠️: Map generation incorrect
-- ❌: No roles
-- ❌: Loot tables incorrect
+- ✅: No roles
+- ⚠️: Loot tables incorrect
 
 **7. Faction (50v50)**
 - ✅: Players in a group will spawn in same spawn point as the group's leader, but each player have different team (Red or Blue)
