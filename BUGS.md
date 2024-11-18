@@ -29,3 +29,9 @@ This list is from the issue https://github.com/leia-uwu/survev/issues/129, each 
 - ⚠️: Map generation incorrect
 - ❌: No roles
 - ❌: Loot tables incorrect
+
+**7. Faction (50v50)**
+- ✅: Players in a group will spawn in same spawn point as the group's leader, but each player have different team (Red or Blue)
+- ✅: Players who left a 50v50 match are still count as players
+- ✅: Missing large bridges (`bridge_lg_structure_01`)
+- ⚠️: Airstrikes nonfunctional
