@@ -9,11 +9,10 @@ We do not consider any updates after the Kongregate acquisition canonical, so th
 
 ## Running locally
 
-start client development server with `pnpm dev:client`
-
-and server with `pnpm dev:server`
-
-or cd into server and client directories and run `pnpm dev` for each
+Start client development server with `npm run dev:client`, and server with `npm run dev:server`, or cd into server and client directories and run `npm run dev` for each.
 
 ## Production builds
-See [HOSTING.md](./HOSTING.md)
+See [HOSTING.md](./HOSTING.md).
+
+## Bugs/exploits list
+See [BUGS.md](./BUGS.md).

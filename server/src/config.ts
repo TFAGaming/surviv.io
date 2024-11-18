@@ -110,8 +110,8 @@ export const Config = {
 
     modes: [
         { mapName: "main", teamMode: TeamMode.Solo, enabled: true },
-        { mapName: "desert", teamMode: TeamMode.Duo, enabled: true },
-        { mapName: "faction", teamMode: TeamMode.Squad, enabled: true },
+        { mapName: "main", teamMode: TeamMode.Duo, enabled: true },
+        { mapName: "main", teamMode: TeamMode.Squad, enabled: true },
     ], // getMapsOfTheDay(),
 
     regions: {},
@@ -169,9 +169,9 @@ function loadConfig(fileName: string, create?: boolean) {
 }
 
 // try loading old config file first for backwards compatibility
-/*if (!loadConfig("survivio-config.json")) {
+if (!loadConfig("survivio-config.json")) {
     loadConfig("survivio-config.json", true);
-}*/
+}
 
 type DeepPartial<T> = T extends object
     ? {
