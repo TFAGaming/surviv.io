@@ -9694,7 +9694,7 @@ export const MapObjectDefs: Record<string, MapObjectDef> = {
     mil_crate_05: createCrate({
         collision: collider.createAabbExtents(v2.create(0, 0), v2.create(2.7, 1.25)),
         health: 100,
-        loot: [tierLoot("tier_guns", 1, 2), tierLoot("tier_snipers", 1, 2)],
+        loot: [/*tierLoot("tier_guns", 1, 2),*/ tierLoot("tier_snipers", 1, 2)],
         map: { display: true, color: 3622438 },
         terrain: { grass: true, beach: true },
         img: { sprite: "map-crate-mil-05.img" },

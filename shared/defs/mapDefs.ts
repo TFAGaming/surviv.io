@@ -151,7 +151,7 @@ export interface MapDef {
                     innerRad: number;
                     outerRad: number;
                     spawnBound: {
-                        pos: Vec2;
+                        pos: Vec2 | (() => Vec2);
                         rad: number;
                     };
                 }>;

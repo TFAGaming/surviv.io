@@ -30,6 +30,9 @@ const mapDef = {
     gameMode: { maxPlayers: 80, sniperMode: true },
     mapGen: {
         map: {
+            scale: { small: 1.1875, large: 1.1875 },
+            shoreInset: 8,
+            grassInset: 12,
             rivers: {
                 lakes: [
                     {
@@ -37,7 +40,9 @@ const mapDef = {
                         innerRad: 6,
                         outerRad: 36,
                         spawnBound: {
-                            pos: v2.create(0.84, 0.18),
+                            pos: () => {
+                                return v2.create(Math.random(), Math.random());
+                            },
                             rad: 50,
                         },
                     },
@@ -46,17 +51,19 @@ const mapDef = {
                         innerRad: 6,
                         outerRad: 36,
                         spawnBound: {
-                            pos: v2.create(0.21, 0.79),
+                            pos: () => {
+                                return v2.create(Math.random(), Math.random());
+                            },
                             rad: 50,
                         },
                     },
                     {
                         odds: 1,
-                        innerRad: 42,
+                        innerRad: 32,
                         outerRad: 66,
                         spawnBound: {
                             pos: v2.create(0.5, 0.5),
-                            rad: 70,
+                            rad: 80,
                         },
                     },
                 ],
@@ -77,16 +84,19 @@ const mapDef = {
         },
         densitySpawns: [
             {
-                stone_01: 200,
+                stone_01sv: 100,
+                stone_03x: 10,
                 stone_07: 14,
-                brush_clump_01: 30,
+                stone_02sv: 1,
+                brush_02sv: 15,
+                brush_01sv: 15,
+                brush_clump_01: 20,
                 bunker_structure_03: 1,
                 bunker_structure_01sv: 1,
                 barrel_01: 76,
                 propane_01: 56,
                 crate_02sv: 40,
                 crate_01: 38,
-                crate_02: 4,
                 crate_03: 8,
                 crate_03x: 1,
                 mil_crate_05: 10,
@@ -112,7 +122,7 @@ const mapDef = {
                 warehouse_01f: { small: 4, large: 5 },
                 kopje_patch_01: { small: 2, large: 3},
                 savannah_patch_01: 4,
-                crate_02sv_lake: 3,
+                crate_02sv_lake: 1,
                 cache_01: 1,
                 cache_02: 1,
                 cache_07: 1,

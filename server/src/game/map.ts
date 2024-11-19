@@ -433,7 +433,7 @@ export class GameMap {
             const points: Vec2[] = [];
 
             const center = v2.add(
-                v2.mulElems(v2.create(this.width, this.height), lake.spawnBound.pos),
+                v2.mulElems(v2.create(this.width, this.height), typeof lake.spawnBound.pos == "function" ? lake.spawnBound.pos() : lake.spawnBound.pos),
                 util.randomPointInCircle(lake.spawnBound.rad),
             );
 
@@ -616,8 +616,8 @@ export class GameMap {
             // Generate river rocks and bushes
             //
             const riverObjs = {
-                stone_03: 3,
-                bush_04: 1.2,
+                stone_03: this.game.mapName === "savannah" ? 0.25 : 3,
+                bush_04: this.game.mapName === "savannah" ? 0.1 : 1.5,
             };
             for (const type in riverObjs) {
                 for (const river of this.terrain.rivers) {
