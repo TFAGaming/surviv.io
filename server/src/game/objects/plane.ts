@@ -25,6 +25,83 @@ type PlaneOptions = MapDef["gameConfig"]["planes"]["timings"][number]["options"]
 
 const MAX_ID = 255;
 
+function findAirstrikePlaneSpawnAndDirection(
+    targetPos: { x: number; y: number },
+    dir: { x: number; y: number },
+    mapSize: number,
+    offset: number,
+    sideOffset: number
+): { spawn: { x: number; y: number }; newDir: { x: number; y: number } } {
+    const reversedDir = { x: -dir.x, y: -dir.y };
+
+    const orthogonal = { x: -dir.y, y: dir.x };
+    const adjustedTarget = {
+        x: targetPos.x + orthogonal.x * sideOffset,
+        y: targetPos.y + orthogonal.y * sideOffset,
+    };
+
+    const left = 0.5;
+    const right = mapSize - 0.5;
+    const bottom = 0.5;
+    const top = mapSize - 0.5;
+
+    const tValues: { t: number; x: number; y: number }[] = [];
+
+    // Intersection with left edge (x = left)
+    if (Math.abs(reversedDir.x) > 1e-5) {
+        const t = (left - adjustedTarget.x) / reversedDir.x;
+        const y = adjustedTarget.y + t * reversedDir.y;
+        if (t > 0 && y >= bottom && y <= top) {
+            tValues.push({ t, x: left, y });
+        }
+    }
+
+    // Intersection with right edge (x = right)
+    if (Math.abs(reversedDir.x) > 1e-5) {
+        const t = (right - adjustedTarget.x) / reversedDir.x;
+        const y = adjustedTarget.y + t * reversedDir.y;
+        if (t > 0 && y >= bottom && y <= top) {
+            tValues.push({ t, x: right, y });
+        }
+    }
+
+    // Intersection with bottom edge (y = bottom)
+    if (Math.abs(reversedDir.y) > 1e-5) {
+        const t = (bottom - adjustedTarget.y) / reversedDir.y;
+        const x = adjustedTarget.x + t * reversedDir.x;
+        if (t > 0 && x >= left && x <= right) {
+            tValues.push({ t, x, y: bottom });
+        }
+    }
+
+    // Intersection with top edge (y = top)
+    if (Math.abs(reversedDir.y) > 1e-5) {
+        const t = (top - adjustedTarget.y) / reversedDir.y;
+        const x = adjustedTarget.x + t * reversedDir.x;
+        if (t > 0 && x >= left && x <= right) {
+            tValues.push({ t, x, y: top });
+        }
+    }
+
+    const closest = tValues.reduce((min, current) => (current.t < min.t ? current : min));
+
+    let spawn = { x: closest.x, y: closest.y };
+
+    spawn = {
+        x: spawn.x + reversedDir.x * offset,
+        y: spawn.y + reversedDir.y * offset,
+    };
+
+    const newDirVector = { x: adjustedTarget.x - spawn.x, y: adjustedTarget.y - spawn.y };
+    const magnitude = Math.sqrt(newDirVector.x ** 2 + newDirVector.y ** 2);
+    const newDir = {
+        x: newDirVector.x / magnitude,
+        y: newDirVector.y / magnitude,
+    };
+
+    return { spawn, newDir };
+}
+
 export class PlaneBarn {
     planes: Plane[] = [];
 
@@ -85,36 +162,43 @@ export class PlaneBarn {
 
                         this.game.playerBarn.addEmote(0, pos, "ping_airstrike", true);
 
+                        const dir = v2.randomUnit();
+
                         this.addAirStrike(
                             pos,
-                            v2.randomUnit()
+                            dir,
+                            0
                         );
 
                         setTimeout(() => {
                             this.addAirStrike(
                                 pos,
-                                v2.randomUnit()
+                                dir,
+                                8
                             );
                         }, 800);
 
                         setTimeout(() => {
                             this.addAirStrike(
                                 pos,
-                                v2.randomUnit()
+                                dir,
+                                -8
                             );
                         }, 800 * 2);
 
                         setTimeout(() => {
                             this.addAirStrike(
                                 pos,
-                                v2.randomUnit()
+                                dir,
+                                4
                             );
                         }, 800 * 3);
 
                         setTimeout(() => {
                             this.addAirStrike(
                                 pos,
-                                v2.randomUnit()
+                                dir,
+                                -4
                             );
                         }, 800 * 4);
 
@@ -273,7 +357,7 @@ export class PlaneBarn {
         this.planes.push(plane);
     }
 
-    addAirStrike(targetPos: Vec2, dir: Vec2) {
+    addAirStrike(targetPos: Vec2, dir: Vec2, sideOffset: number) {
         let id = 1;
         if (this.idNext < MAX_ID) {
             id = this.idNext++;
@@ -290,15 +374,9 @@ export class PlaneBarn {
             return;
         }
 
-        let airstrikePos = v2.copy(targetPos);
+        const planePosAndDir = findAirstrikePlaneSpawnAndDirection(targetPos, dir, 720, 100, sideOffset);
 
-        const planePos = v2.add(airstrikePos, v2.mul(dir, AIRDROP_PLANE_SPAWN_DIST));
-
-        const toPlanePos = v2.sub(airstrikePos, planePos);
-        let len = v2.length(toPlanePos);
-        let newdir = len > 0.00001 ? v2.div(toPlanePos, len) : v2.create(1, 0);
-
-        const plane = new AirStrikePlane(this.game, id, planePos, targetPos, newdir);
+        const plane = new AirStrikePlane(this.game, id, planePosAndDir.spawn, targetPos, planePosAndDir.newDir);
         this.planes.push(plane);
     }
 }
@@ -370,7 +448,7 @@ class AirStrikePlane extends Plane {
 
         const config = this.config as typeof GameConfig.airstrike;
 
-        if (!this.actionComplete && v2.distance(this.pos, this.targetPos) < 10) {
+        if (!this.actionComplete && v2.distance(this.pos, this.targetPos) <= 10) {
             this.actionComplete = true;
 
             for (let i = 0; i < config.bombCount; i++) {

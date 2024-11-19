@@ -5,7 +5,7 @@ This list is from the issue https://github.com/leia-uwu/survev/issues/129, each 
 
 ## Bugs or exploits:
 **1. Desert:**
-- ⚠️: Airstrikes/strobes nonfunctional
+- ✅: Airstrikes/strobes nonfunctional
 - ✅: Hardstone blocks have no loot
 - ✅: Unable to leave saloon basement
 
@@ -35,4 +35,4 @@ This list is from the issue https://github.com/leia-uwu/survev/issues/129, each 
 - ✅: Players in a group will spawn in same spawn point as the group's leader, but each player have different team (Red or Blue)
 - ✅: Players who left a 50v50 match are still count as players
 - ✅: Missing large bridges (`bridge_lg_structure_01`)
-- ⚠️: Airstrikes nonfunctional
+- ✅: Airstrikes nonfunctional

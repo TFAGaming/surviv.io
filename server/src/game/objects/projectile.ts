@@ -223,14 +223,14 @@ export class Projectile extends BaseGameObject {
 
                 setTimeout(() => {
                     this.game.playerBarn.addEmote(0, this.pos, "ping_airstrike", true);
-                    this.game.planeBarn.addAirStrike(this.pos, v2.reverse(this.dir));
-
+                    this.game.planeBarn.addAirStrike(this.pos, this.dir, 0);
+                    
                     setTimeout(() => {
-                        this.game.planeBarn.addAirStrike(this.pos, v2.reverse(this.dir));
+                        this.game.planeBarn.addAirStrike(this.pos, this.dir, 4);
                     }, 800);
 
                     setTimeout(() => {
-                        this.game.planeBarn.addAirStrike(this.pos, v2.reverse(this.dir));
+                        this.game.planeBarn.addAirStrike(this.pos, this.dir, -4);
                     }, 800 * 2);
                 }, def.strikeDelay * 1000);
             }
