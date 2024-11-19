@@ -27,7 +27,7 @@ This list is from the issue https://github.com/leia-uwu/survev/issues/129, each 
 - ❌: No class pods
 
 **6. Savannah**
-- ⚠️: Map generation incorrect
+- ✅: Map generation incorrect
 - ✅: No roles
 - ⚠️: Loot tables incorrect
 
