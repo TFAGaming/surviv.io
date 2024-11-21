@@ -305,6 +305,40 @@ export class Game {
                 player.spectate(msg as net.SpectateMsg);
                 break;
             }
+            case net.MsgType.PerkModeRoleSelect: {
+                const role = (msg as net.PerkModeRoleSelectMsg).role;
+
+                player.promoteToRole(role);
+                
+                switch (role) {
+                    case "scout": {
+                        player.setOutfit("outfitScout");
+                        break;
+                    }
+                    case "sniper": {
+                        player.setOutfit("outfitSniper");
+                        break;
+                    }
+                    case "healer": {
+                        player.setOutfit("outfitMedic");
+                        break;
+                    }
+                    case "demo": {
+                        player.setOutfit("outfitDemo");
+                        break;
+                    }
+                    case "assault": {
+                        player.setOutfit("outfitAssault");
+                        break;
+                    }
+                    case "tank": {
+                        player.setOutfit("outfitTank");
+                        break;
+                    }
+                }
+                
+                break;
+            }
         }
     }
 

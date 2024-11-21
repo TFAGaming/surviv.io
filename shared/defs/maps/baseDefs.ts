@@ -454,6 +454,11 @@ export const Main: MapDef = {
             { name: "treat_556", count: 1, weight: 1 },
             { name: "treat_762", count: 1, weight: 1 },
             { name: "treat_super", count: 1, weight: 0.1 },
+        ],
+        tier_class_crate_mythic: [
+            { name: "scavenger_adv", count: 1, weight: 1 },
+            { name: "explosive", count: 1, weight: 1 },
+            { name: "splinter", count: 1, weight: 1 },
         ]
     },
     mapGen: {

@@ -3,7 +3,8 @@ This list is from the issue https://github.com/leia-uwu/survev/issues/129, each 
 - ⚠️: This bug/exploit is half-fixed; Has problems and/or not accurate like the original one.
 - ❌: This bug/exploit is still not fixed.
 
-## Bugs or exploits:
+# Bugs/exploits:
+## Maps
 **1. Desert:**
 - ✅: Airstrikes/strobes nonfunctional
 - ✅: Hardstone blocks have no loot
@@ -19,11 +20,11 @@ This list is from the issue https://github.com/leia-uwu/survev/issues/129, each 
 
 **4. Woods:**
 - ❌: Buildings shouldn't be able to spawn on the central island
-- ❌: Picking up Shishigami no Kabuto and then removing it will keep the effects (permanently), and you cannot pick up any other helmet.
+- ❌: Picking up Shishigami no Kabuto and then removing it will keep the effects (permanently), and you cannot pick up any other helmet
 
 **5. Cobalt:**
-- ❌: Roles nonfunctional
-- ❌: Twins Bunker central barrel has no loot
+- ⚠️: Roles nonfunctional
+- ✅: Twins Bunker central barrel has no loot
 - ❌: No class pods
 
 **6. Savannah**
@@ -36,3 +37,4 @@ This list is from the issue https://github.com/leia-uwu/survev/issues/129, each 
 - ✅: Players who left a 50v50 match are still count as players
 - ✅: Missing large bridges (`bridge_lg_structure_01`)
 - ✅: Airstrikes nonfunctional
+- ❌: Airstrikes yellow zones nonfunctional

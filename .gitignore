@@ -1,12 +1,10 @@
 reference/
 
-survivio-config-old.json
-
 # config file
 # legacy
 resurviv-config.json
 # new
-survev-config.json
+survivio-config-old.json
 
 # env file
 .env
